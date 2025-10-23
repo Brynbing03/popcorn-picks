@@ -1,26 +1,20 @@
-import { renderMovies } from './ui.js';
-
-const FAVORITES_KEY = 'popcornFavorites';
-
 export function getFavorites() {
-    return JSON.parse(localStorage.getItem(FAVORITES_KEY)) || [];
-}
-
-export function addFavorite(movie) {
-    const favorites = getFavorites();
-    if (!favorites.find(m => m.id === movie.id)) {
-        favorites.push(movie);
-        localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
-    }
-}
-
-export function removeFavorite(id) {
+    return JSON.parse(localStorage.getItem('favorites')) || [];
+  }
+  
+  export function toggleFavorite(movie) {
     let favorites = getFavorites();
-    favorites = favorites.filter(m => m.id !== id);
-    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
-}
-
-export function renderFavorites() {
+    const exists = favorites.find(f => f.id === movie.id);
+    if (exists) {
+      favorites = favorites.filter(f => f.id !== movie.id);
+    } else {
+      favorites.push(movie);
+    }
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+  }
+  
+  export function isFavorite(id) {
     const favorites = getFavorites();
-    renderMovies(favorites, true);
-}
+    return favorites.some(f => f.id === id);
+  }
+  

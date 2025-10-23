@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Movie Details | Popcorn Picks</title>
+  <title>My Favorites | Popcorn Picks</title>
   <link rel="stylesheet" href="styles/base.css" />
-  <link rel="stylesheet" href="styles/movie.css" />
 </head>
 <body>
   <header class="site-header">
@@ -14,18 +13,21 @@
       <h1>POPCORN PICKS</h1>
     </div>
     <nav>
-      <a href="favorites.html" class="favorites">❤️ Favorites</a>
+      <a href="index.html" class="favorites">🏠 Home</a>
     </nav>
   </header>
 
   <main>
-    <section id="movie-details" class="movie-details"></section>
+    <section class="favorites-section">
+      <h2>My Favorite Movies</h2>
+      <div class="movies-grid" id="favorites-grid"></div>
+    </section>
   </main>
 
   <footer>
     <p>&copy; 2025 Popcorn Picks. All rights reserved.</p>
   </footer>
 
-  <script type="module" src="js/moviePage.js"></script>
+  <script type="module" src="js/favoritesPage.js"></script>
 </body>
 </html>

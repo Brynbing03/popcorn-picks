@@ -1,0 +1,28 @@
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 1rem 2rem;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+  
+  .logo {
+    border-radius: 50%;
+  }
+  
+  .favorites {
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+  }
+  
+  .favorites:hover {
+    color: var(--primary-color);
+  }
+  

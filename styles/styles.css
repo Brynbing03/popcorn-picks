@@ -1,0 +1,185 @@
+/* === COLOR VARIABLES === */
+:root {
+    --primary-color: #C9B1C4;   /* Background color */
+    --secondary-color: #78346C; /* Header and accents */
+    --accent-color: #EEC63C;    /* Highlight color */
+    --text-color: #BF1D1D;      /* Text and titles */
+    --font-family: 'Poppins', sans-serif;
+  }
+  
+  /* === BASE STYLES === */
+  body {
+    font-family: var(--font-family);
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* === HEADER === */
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  }
+  
+  .logo-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+/* Logo styling */
+.logo {
+    height: 80px; /* adjust this number to make it larger (try 100px or 120px) */
+    width: auto;  /* keeps proportions correct */
+    object-fit: contain; /* ensures it doesn’t stretch or crop */
+    margin-right: 1rem;  /* space between logo and title */
+    border: 5px solid #BF1D1D;
+  }
+  
+  .header h1 {
+    font-size: 1.8rem;
+    margin: 0;
+  }
+  
+  .favorites {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .heart {
+    color: var(--accent-color);
+    font-size: 1.4rem;
+  }
+  
+  /* === SEARCH SECTION === */
+  .search-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+  
+  .search-section label {
+    font-weight: 600;
+    color: var(--secondary-color);
+  }
+  
+  .search-section input,
+  .search-section select {
+    padding: 0.5rem;
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+    font-family: var(--font-family);
+  }
+  
+  /* === MOVIE GRID === */
+  .movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+  }
+  
+  .movie-card {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+    padding: 1rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .movie-card:hover {
+    transform: scale(1.03);
+  }
+  
+  .poster {
+    background-color: var(--accent-color);
+    height: 150px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+  
+  .movie-card h3 {
+    margin: 0.5rem 0 0;
+    color: var(--secondary-color);
+  }
+  
+  .movie-card p {
+    margin: 0;
+    color: var(--text-color);
+  }
+
+  /* ------------------------------
+   POPCORN PICKS COLOR UPDATES
+   ------------------------------ */
+
+/* Color palette */
+:root {
+    --primary-color: #C9B1C4;   /* Background */
+    --secondary-color: #78346C; /* Header + highlights */
+    --accent-color: #EEC63C;    /* Buttons, icons */
+    --text-color: #BF1D1D;      /* Main text */
+    --font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Set background color and base font */
+  body {
+    background-color: var(--primary-color);
+    font-family: var(--font-family);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Header styling */
+  header {
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Site title (POPCORN PICKS) */
+  header h1 {
+    color: var(--accent-color);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  /* Favorites link or button */
+/* Favorites link or button */
+.favorites {
+    color: var(--accent-color); /* Yellow text */
+    font-weight: 500;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+  }
+  
+  /* Heart icon color */
+  .favorites .heart {
+    color: black; /* Black heart */
+    transition: transform 0.2s ease;
+  }
+  
+  .favorites .heart:hover {
+    transform: scale(1.1);
+  }
+  
+  

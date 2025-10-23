@@ -1,17 +1,18 @@
 const API_KEY = '096d47bba49e48c6b90d165bb9ffc3f0';
 const BASE_URL = 'https://api.themoviedb.org/3';
-const IMG_URL = 'https://image.tmdb.org/t/p/w500';
 
-export async function fetchMovies(query) {
-    const res = await fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${query}`);
-    const data = await res.json();
-    return data.results;
+export async function fetchMovies(query = 'popular') {
+  const url = query === 'popular'
+    ? `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=1`
+    : `${BASE_URL}/search/movie?api_key=${API_KEY}&query=${encodeURIComponent(query)}`;
+
+  const response = await fetch(url);
+  const data = await response.json();
+  return data.results || [];
 }
 
 export async function fetchMovieById(id) {
-    const res = await fetch(`${BASE_URL}/movie/${id}?api_key=${API_KEY}`);
-    const data = await res.json();
-    return data;
+  const url = `${BASE_URL}/movie/${id}?api_key=${API_KEY}&language=en-US`;
+  const response = await fetch(url);
+  return await response.json();
 }
-
-export { IMG_URL };
