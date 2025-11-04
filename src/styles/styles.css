@@ -125,10 +125,10 @@
 
 /* Color palette */
 :root {
-    --primary-color: #C9B1C4;   /* Background */
-    --secondary-color: #78346C; /* Header + highlights */
-    --accent-color: #EEC63C;    /* Buttons, icons */
-    --text-color: #BF1D1D;      /* Main text */
+  --primary-color: #e1c6eb;
+  --secondary-color: #788cbd;
+  --accent-color: #093871;
+  --text-color: #3b104b;      /* Main text */
     --font-family: 'Poppins', sans-serif;
   }
   
