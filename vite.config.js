@@ -13,6 +13,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, "src/index.html"), 
         favorites: resolve(__dirname, 'src/favorites.html'),
+        movie: resolve(__dirname, 'src/movie.html'),
       }
     }
   }
