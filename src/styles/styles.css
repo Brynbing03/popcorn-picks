@@ -39,7 +39,7 @@
     width: auto;  /* keeps proportions correct */
     object-fit: contain; /* ensures it doesn’t stretch or crop */
     margin-right: 1rem;  /* space between logo and title */
-    border: 5px solid #BF1D1D;
+    
   }
   
   .header h1 {
