@@ -1,5 +1,5 @@
 import { fetchMovies } from './api.js';
-import { toggleFavorite } from './favorites.js';
+import { toggleFavorite, isFavorite } from './favorites.js';
 
 const searchForm = document.getElementById('search-form');
 const moviesGrid = document.getElementById('movies-grid');
@@ -23,15 +23,32 @@ function displayMovies(movies, genre) {
       ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
       : 'https://via.placeholder.com/200x300?text=No+Image';
 
+    // Check if movie is already favorited
+    const isMovieFavorite = isFavorite(movie.id);
+    const heartIcon = isMovieFavorite ? '🤍' : '🖤';
+
     card.innerHTML = `
-      <a href="movie.html?id=${movie.id}">
-        <img src="${poster}" alt="${movie.title}">
-        <div class="movie-info">
-          <h3>${movie.title}</h3>
-          <p>${movie.release_date ? movie.release_date.split('-')[0] : 'N/A'}</p>
-        </div>
-      </a>
+      <div class="movie-content">
+        <a href="movie.html?id=${movie.id}">
+          <img src="${poster}" alt="${movie.title}">
+          <div class="movie-info">
+            <h3>${movie.title}</h3>
+            <p>${movie.release_date ? movie.release_date.split('-')[0] : 'N/A'}</p>
+          </div>
+        </a>
+        <button class="favorite-btn" data-movie-id="${movie.id}">${heartIcon}</button>
+      </div>
     `;
+
+    // Add click event for favorite button
+    const favoriteBtn = card.querySelector('.favorite-btn');
+    favoriteBtn.addEventListener('click', (e) => {
+      e.preventDefault(); // Prevent link navigation
+      toggleFavorite(movie);
+      // Update the heart icon immediately
+      const newIsFavorite = isFavorite(movie.id);
+      favoriteBtn.textContent = newIsFavorite ? '🤍' : '🖤';
+    });
 
     moviesGrid.appendChild(card);
   });
