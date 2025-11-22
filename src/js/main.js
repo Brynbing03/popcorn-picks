@@ -6,14 +6,43 @@ const moviesGrid = document.getElementById('movies-grid');
 const searchInput = document.getElementById('search-input');
 const filterDropdown = document.getElementById('filter-dropdown');
 
+// ✅ TMDB Official Genre IDs
+const GENRES = {
+  28: "action",
+  35: "comedy",
+  18: "drama",
+  878: "sci-fi",
+  14: "fantasy",
+  27: "horror",
+  16: "animation",
+  12: "adventure",
+  53: "thriller",
+  80: "crime",
+  10749: "romance"
+};
+
 async function loadMovies(query = '', genre = 'all') {
   const movies = await fetchMovies(query);
   displayMovies(movies, genre);
 }
 
-function displayMovies(movies, genre) {
+function displayMovies(movies, selectedGenre) {
   moviesGrid.innerHTML = '';
-  const filtered = genre === 'all' ? movies : movies.filter(m => m.genre && m.genre.toLowerCase().includes(genre));
+
+  // ✅ Filter movies by genre
+  const filtered =
+    selectedGenre === "all"
+      ? movies
+      : movies.filter(movie =>
+          movie.genre_ids &&
+          movie.genre_ids.some(id => GENRES[id] === selectedGenre)
+        );
+
+  // If no movies found, show a message
+  if (filtered.length === 0) {
+    moviesGrid.innerHTML = `<p>No movies found for that genre.</p>`;
+    return;
+  }
 
   filtered.forEach(movie => {
     const card = document.createElement('div');
@@ -23,9 +52,7 @@ function displayMovies(movies, genre) {
       ? `https://image.tmdb.org/t/p/w200${movie.poster_path}`
       : 'https://via.placeholder.com/200x300?text=No+Image';
 
-    // Check if movie is already favorited
     const isMovieFavorite = isFavorite(movie.id);
-    const heartIcon = isMovieFavorite ? '🤍' : '🖤';
 
     card.innerHTML = `
       <div class="movie-content">
@@ -36,35 +63,40 @@ function displayMovies(movies, genre) {
             <p>${movie.release_date ? movie.release_date.split('-')[0] : 'N/A'}</p>
           </div>
         </a>
-        <button class="favorite-btn" data-movie-id="${movie.id}">${heartIcon}</button>
+        <button class="favorite-btn" data-movie-id="${movie.id}">
+          ${isMovieFavorite ? '🤍' : '🖤'}
+        </button>
       </div>
     `;
 
-    // Add click event for favorite button
     const favoriteBtn = card.querySelector('.favorite-btn');
     favoriteBtn.addEventListener('click', (e) => {
-      e.preventDefault(); // Prevent link navigation
+      e.preventDefault();
       toggleFavorite(movie);
-      // Update the heart icon immediately
-      const newIsFavorite = isFavorite(movie.id);
-      favoriteBtn.textContent = newIsFavorite ? '🤍' : '🖤';
+      favoriteBtn.textContent = isFavorite(movie.id) ? '🤍' : '🖤';
     });
 
     moviesGrid.appendChild(card);
   });
 }
 
+// ----------------------
+// EVENT LISTENERS
+// ----------------------
+
+// Search form
 searchForm.addEventListener('submit', e => {
   e.preventDefault();
-  const query = searchInput.value.trim();
-  const genre = filterDropdown.value;
-  if (query) loadMovies(query, genre);
-});
-
-filterDropdown.addEventListener('change', () => {
-  const query = searchInput.value.trim();
+  const query = searchInput.value.trim() || 'popular';
   loadMovies(query, filterDropdown.value);
 });
 
-// Initial load
+// Dropdown filter
+filterDropdown.addEventListener('change', () => {
+  const query = searchInput.value.trim() || 'popular';
+  loadMovies(query, filterDropdown.value);
+});
+
+
+// Initial load (popular movies)
 loadMovies('popular');

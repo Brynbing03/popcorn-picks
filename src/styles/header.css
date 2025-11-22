@@ -1,11 +1,12 @@
 .site-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--secondary-color);
-    color: white;
-    padding: 1rem 2rem;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 1rem 2rem;
+}
+
   
   .logo-container {
     display: flex;
@@ -24,5 +25,15 @@
   
   .favorites:hover {
     color: var(--primary-color);
+  }
+  
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem; /* space between links */
+  }
+  
+  nav a {
+    white-space: nowrap; /* prevents text from wrapping onto a second line */
   }
   
